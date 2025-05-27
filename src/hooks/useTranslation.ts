@@ -30,6 +30,10 @@ const translations: Translations = {
       skills: "Habilidades",
       projects: "Projetos",
       contact: "Contato"
+    },
+    contact: {
+      title: "Contato",
+      subtitle: "Vamos conversar sobre oportunidades, projetos ou apenas trocar uma ideia sobre tecnologia!"
     }
   },
   'en': {
@@ -51,6 +55,10 @@ const translations: Translations = {
       skills: "Skills", 
       projects: "Projects",
       contact: "Contact"
+    },
+    contact: {
+      title: "Contact",
+      subtitle: "Let's talk about opportunities, projects or just chat about technology!"
     }
   }
 }
