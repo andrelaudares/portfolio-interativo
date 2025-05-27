@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portfólio Interativo - André Laudares
 
-## Getting Started
+**Portfólio interativo moderno desenvolvido em Next.js + TypeScript + Tailwind CSS**
 
-First, run the development server:
+## 📋 Status - Sprint 1 ✅
+
+### ✅ Concluído
+- [x] Setup Next.js + TypeScript + Tailwind CSS v4
+- [x] Estrutura de pastas organizada
+- [x] Hero Section com typing animation
+- [x] About Section com estatísticas animadas
+- [x] Header com navegação suave
+- [x] Footer com links sociais
+- [x] Sistema de tradução PT-BR/EN completo
+- [x] Tema dark configurado
+- [x] Responsividade básica
+- [x] Animações com Framer Motion
+- [x] **✅ Scroll indicator corrigido**
+- [x] **✅ Tradução inglês implementada**
+
+### 🎯 Funcionalidades da Sprint 1
+- **Hero Section**: Nome com typing animation, idade dinâmica, cards informativos
+- **About Section**: Placeholder para foto, descrição, estatísticas animadas
+- **Navegação**: Scroll suave entre seções, menu mobile responsivo
+- **Tradução**: Sistema básico PT-BR/EN com hook customizado
+- **Design**: Tema dark moderno, gradientes, animações fluidas
+
+## 🛠️ Stack Tecnológica
+
+- **Next.js 15** - Framework React
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS v4** - Styling moderno
+- **Framer Motion** - Animações fluidas
+- **React Type Animation** - Efeito de digitação
+- **React Intersection Observer** - Scroll animations
+- **Lucide React** - Ícones modernos
+
+## 🚀 Como Executar
 
 ```bash
+# Clone o repositório
+git clone https://github.com/andrelaudares/portfolio-interativo.git
+
+# Entre no diretório
+cd portfolio-interativo
+
+# Instale as dependências
+npm install
+
+# Execute em desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000) para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Estrutura do Projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                 # Páginas Next.js
+├── components/
+│   ├── layout/         # Header, Footer
+│   ├── sections/       # HeroSection, AboutSection
+│   └── ui/             # Componentes ShadCN/UI
+├── data/               # Dados pessoais, experiências, projetos
+├── hooks/              # React hooks customizados
+├── lib/                # Utilitários e helpers
+└── types/              # Interfaces TypeScript
+```
 
-## Learn More
+## 🎨 Recursos Visuais
 
-To learn more about Next.js, take a look at the following resources:
+### Animações
+- **Typing Animation**: Textos que digitam automaticamente
+- **Scroll Reveal**: Elementos aparecem conforme scroll
+- **Hover Effects**: Interações em botões e cards
+- **Particles**: Partículas animadas no background
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Responsividade
+- **Mobile First**: Design otimizado para mobile
+- **Breakpoints**: sm, md, lg, xl responsivos
+- **Menu Mobile**: Hambúrguer com animações
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📋 Próximas Sprints
 
-## Deploy on Vercel
+### Sprint 2 (Planejada)
+- [ ] Experience Timeline interativa
+- [ ] Skills Showcase com gráficos
+- [ ] Projects Portfolio com vídeos
+- [ ] Chatbot com Gemini AI
+- [ ] Componentes ShadCN/UI
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Sprint 3 (Planejada)
+- [ ] GitHub Commit Simulator
+- [ ] PDF Resume Generator
+- [ ] Analytics e SEO
+- [ ] Otimizações de performance
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Arquivos Necessários
+
+### Obrigatórios para Sprint 2
+- [ ] `public/assets/foto-profile.png` - Foto profissional (500x500px)
+- [ ] `public/favicon.ico` - Ícone atualizado
+
+### Opcionais para Sprint 2
+- [ ] `public/videos/vetech-demo.mp4` - Vídeo Postman VeTech
+- [ ] Chave API Gemini para chatbot
+
+## 📞 Contato
+
+**André Laudares Soares**
+- LinkedIn: [André Laudares](https://www.linkedin.com/in/andré-laudares/)
+- GitHub: [@andrelaudares](https://github.com/andrelaudares)
+- Email: andrelaudres@hotmail.com
+
+---
+
+**Sprint 1 Concluída com Sucesso! 🎉**
+
+*Desenvolvedor especializado em IA, Python Backend e automação*
