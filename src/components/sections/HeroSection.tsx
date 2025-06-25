@@ -8,13 +8,35 @@ import { personalInfo, typingTexts } from '@/data/personal-info'
 import { calculateAge } from '@/lib/utils'
 import { useTranslation } from '@/hooks/useTranslation'
 
+interface Particle {
+  id: number
+  left: number
+  top: number
+  duration: number
+  delay: number
+}
+
 export function HeroSection() {
   const { t } = useTranslation()
   const [age, setAge] = useState<number>(0)
   const [showScrollIndicator, setShowScrollIndicator] = useState<boolean>(true)
+  const [particles, setParticles] = useState<Particle[]>([])
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setAge(calculateAge(personalInfo.birthDate))
+    setMounted(true)
+    
+    // Gerar partículas após a hidratação
+    const generatedParticles: Particle[] = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: Math.random() * 10 + 10,
+      delay: Math.random() * 5,
+    }))
+    
+    setParticles(generatedParticles)
   }, [])
 
   useEffect(() => {
@@ -49,29 +71,31 @@ export function HeroSection() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
       
-      {/* Animated particles */}
-      <div className="absolute inset-0">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-primary/20 rounded-full"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Animated particles - apenas renderizar após hidratação */}
+      {mounted && (
+        <div className="absolute inset-0">
+          {particles.map((particle) => (
+            <motion.div
+              key={particle.id}
+              className="absolute w-2 h-2 bg-primary/20 rounded-full"
+              animate={{
+                x: [0, 100, 0],
+                y: [0, -100, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: particle.duration,
+                repeat: Infinity,
+                delay: particle.delay,
+              }}
+              style={{
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Main content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">

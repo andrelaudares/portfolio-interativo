@@ -27,18 +27,29 @@ export function ChatBot() {
     scrollToBottom()
   }, [messages])
 
-  useEffect(() => {
-    // Mensagem de boas-vindas quando abre o chat
-    if (isOpen && messages.length === 0) {
-      const welcomeMessage: Message = {
-        id: 'welcome',
-        text: "Oi! 👋 Eu sou o assistente pessoal do André Laudares! Posso te contar tudo sobre a carreira, projetos e habilidades dele. O que você gostaria de saber?",
-        isUser: false,
-        timestamp: new Date()
-      }
-      setMessages([welcomeMessage])
-    }
-  }, [isOpen, messages.length])
+        useEffect(() => {
+        // Mensagem de boas-vindas quando abre o chat
+        if (isOpen && messages.length === 0) {
+          const welcomeMessage: Message = {
+            id: 'welcome',
+            text: `Oi! 👋 Eu sou o assistente pessoal do André Laudares! 
+
+${aiService.isConfigured() ? '🧠 Estou conectado com o Gemini 1.5 Flash AI e tenho acesso completo ao histórico e projetos do André!' : '💡 Estou em modo demonstração, mas posso te contar muito sobre o André!'}
+
+Posso te contar sobre:
+• Os 160+ rotas FastAPI do projeto VeTech
+• A experiência como primeiro funcionário da Altivus AI  
+• Projetos com IA e automação inteligente
+• Habilidades técnicas detalhadas
+• Como contratar o André
+
+O que você gostaria de saber?`,
+            isUser: false,
+            timestamp: new Date()
+          }
+          setMessages([welcomeMessage])
+        }
+      }, [isOpen, messages.length])
 
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return
@@ -65,15 +76,25 @@ export function ChatBot() {
       }
 
       setMessages(prev => [...prev, botMessage])
-    } catch {
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: "Ops! Tive um problema aqui, mas posso te dizer que o André é incrível! Tenta me perguntar sobre os projetos dele ou a experiência na Altivus AI! 😊",
-        isUser: false,
-        timestamp: new Date()
-      }
-      setMessages(prev => [...prev, errorMessage])
-    } finally {
+            } catch {
+          const errorMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            text: `Ops! Tive um probleminha na conexão com a IA, mas posso te contar sobre o André mesmo assim! 😊
+
+Ele é INCRÍVEL! Desenvolveu 160+ rotas FastAPI sozinho no VeTech, foi o primeiro funcionário da Altivus AI e é especialista em Python, IA e automação!
+
+Tenta me perguntar sobre:
+• Projetos específicos
+• Experiência profissional  
+• Habilidades técnicas
+• Como entrar em contato
+
+O que você quer saber?`,
+            isUser: false,
+            timestamp: new Date()
+          }
+          setMessages(prev => [...prev, errorMessage])
+        } finally {
       setIsLoading(false)
     }
   }
@@ -85,12 +106,13 @@ export function ChatBot() {
     }
   }
 
-  const suggestedQuestions = [
-    "Conte sobre o projeto VeTech",
-    "Qual a experiência na Altivus AI?",
-    "Quais são as principais habilidades?",
-    "Como posso entrar em contato?"
-  ]
+        const suggestedQuestions = [
+        "Conte sobre as 160+ rotas do VeTech",
+        "Como foi ser o 1º funcionário da Altivus AI?",
+        "Quais projetos com IA ele desenvolveu?",
+        "Que tecnologias ele domina?",
+        "Como posso contratar o André?"
+      ]
 
   return (
     <>
@@ -98,7 +120,7 @@ export function ChatBot() {
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary hover:bg-primary/90 rounded-full shadow-lg flex items-center justify-center transition-colors"
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1 }}
         whileTap={{ scale: 0.95 }}
         animate={{ 
           rotate: isOpen ? 180 : 0,
@@ -120,7 +142,7 @@ export function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-24 right-6 z-40 w-80 h-96 bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden"
+            className="fixed bottom-24 right-6 z-96 w-106 h-[480px] bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden"
           >
             {/* Chat header */}
             <div className="bg-primary/10 border-b border-border p-4">
@@ -135,14 +157,14 @@ export function ChatBot() {
                   <h3 className="font-semibold text-foreground">Assistente do André</h3>
                   <p className="text-xs text-muted-foreground flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
-                    {aiService.isConfigured() ? 'Powered by Gemini AI' : 'Modo Demonstração'}
+                    {aiService.isConfigured() ? 'Powered by Gemini 1.5 Flash' : 'Modo Demonstração'}
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Messages area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 h-64">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 h-80">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -235,15 +257,15 @@ export function ChatBot() {
                   className="flex-1 bg-muted rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   disabled={isLoading}
                 />
-                <motion.button
-                  onClick={sendMessage}
-                  disabled={!inputValue.trim() || isLoading}
-                  className="w-10 h-10 bg-primary hover:bg-primary/90 rounded-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Send className="w-4 h-4 text-white" />
-                </motion.button>
+                                  <motion.button
+                    onClick={sendMessage}
+                    disabled={!inputValue.trim() || isLoading}
+                    className="w-10 h-10 bg-primary hover:bg-primary/90 rounded-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Send className="w-4 h-4 text-primary-foreground" />
+                  </motion.button>
               </div>
             </div>
           </motion.div>

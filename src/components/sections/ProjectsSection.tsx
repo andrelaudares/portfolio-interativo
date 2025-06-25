@@ -1,16 +1,27 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ExternalLink, Github, Play, Star, Code, Database } from 'lucide-react'
 import { projects } from '@/data/projects'
 import { useTranslation } from '@/hooks/useTranslation'
+import { VideoModal } from '@/components/ui/video-modal'
 
 export function ProjectsSection() {
   const { t } = useTranslation()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
+  })
+  const [videoModal, setVideoModal] = useState<{
+    isOpen: boolean
+    videoUrl: string
+    title: string
+  }>({
+    isOpen: false,
+    videoUrl: '',
+    title: ''
   })
 
   const getProjectIcon = (title: string) => {
@@ -33,6 +44,22 @@ export function ProjectsSection() {
       'from-green-500/10 to-emerald-500/10 border-green-500/20'
     ]
     return colors[index % colors.length]
+  }
+
+  const openVideoModal = (videoUrl: string, title: string) => {
+    setVideoModal({
+      isOpen: true,
+      videoUrl,
+      title: `${title} - Demonstração`
+    })
+  }
+
+  const closeVideoModal = () => {
+    setVideoModal({
+      isOpen: false,
+      videoUrl: '',
+      title: ''
+    })
   }
 
   return (
@@ -164,7 +191,10 @@ export function ProjectsSection() {
                 )}
 
                 {project.videoUrl && (
-                  <button className="flex items-center gap-2 px-3 py-2 bg-green-500/10 hover:bg-green-500/20 text-green-500 rounded-lg text-sm font-medium transition-colors flex-1 justify-center">
+                  <button
+                    onClick={() => openVideoModal(project.videoUrl!, project.title)}
+                    className="flex items-center gap-2 px-3 py-2 bg-green-500/10 hover:bg-green-500/20 text-green-500 rounded-lg text-sm font-medium transition-colors flex-1 justify-center"
+                  >
                     <Play className="w-4 h-4" />
                     <span>Vídeo</span>
                   </button>
@@ -213,6 +243,14 @@ export function ProjectsSection() {
             <ExternalLink className="w-4 h-4" />
           </div>
         </motion.div>
+
+        {/* Video Modal */}
+        <VideoModal
+          isOpen={videoModal.isOpen}
+          onClose={closeVideoModal}
+          videoUrl={videoModal.videoUrl}
+          title={videoModal.title}
+        />
       </div>
     </section>
   )

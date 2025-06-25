@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="pt-BR" className="dark">
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <div className="min-h-screen">
-          {children}
+        {children}
         </div>
       </body>
     </html>

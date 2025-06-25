@@ -29,6 +29,6 @@ export default function Home() {
 
       {/* Interactive Components */}
       <ChatBot />
-    </main>
+      </main>
   )
 }
